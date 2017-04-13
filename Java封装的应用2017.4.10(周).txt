@@ -1,0 +1,111 @@
+package Bank;
+
+import java.util.Scanner;
+//简单银行功能，无数据库版
+public class BankAccontSystem {
+	private String clientName;//客户姓名
+	private int clientPassword;//客户账号密码
+	private long clientAccont;//客户账号
+	private double clientBank;//账户余额
+	private double clientDepositBank;//用户存款余额
+	//设置getter和setter
+    public String getClientName(){
+    	return clientName;
+    }
+    public int getClientPassword(){
+    	return clientPassword;
+    }
+    public long getClientAccont(){
+    	return clientAccont;
+    } 
+    public double getClientBank(){
+    	return clientBank;
+    }
+    public double getClientDepositBank(){
+    	return clientDepositBank;
+    }
+    public void setClientName(String newClientName){
+    	this.clientName = newClientName;
+    }
+    public void setClientPassword(int newClientPassword){
+    	this.clientPassword = newClientPassword;
+    }
+    public void setClientAccont(long newClientAccont){
+    	this.clientAccont = newClientAccont;
+    }
+    public void setClientBank(double newClientBank){
+    	this.clientBank = newClientBank;
+    }
+    public void setClientDepositBank(double newClientDepositBank){
+    	this.clientDepositBank = newClientDepositBank;
+    }
+//    编写查询余额的方法
+    public static void InqueryMethod(){
+    	System.out.println("您正在进行的操作是：");
+    	System.out.println("____查询操作____");
+    }
+//    编写存款的方法
+    public static void DepositeMethod(){
+    	System.out.println("您正在进行的操作是：");
+    	System.out.println("____存款操作____");
+    }
+//    编写取款的方法
+    public static void WithdrawMethod(){
+    	System.out.println("您正在进行的操作是：");
+    	System.out.println("____取款操作____");
+    }   
+//    编写主方法
+    public static void main(String[] args){
+    	BankAccontSystem bas = new BankAccontSystem();
+    	bas.setClientPassword(000000);
+    	System.out.println("欢迎光临宇创银行客户服务系统");
+    	System.out.println("请选择您要办理的业务：");
+    	System.out.println("1.查询操作");
+    	System.out.println("2.存款操作");
+    	System.out.println("3.取款操作");
+    	Scanner inputChoice = new Scanner(System.in);
+//    	获取输入的值
+    	String getInputChoice = inputChoice.nextLine();
+//    	判断用户输入的功能编号
+    	switch(getInputChoice){
+    	case "1":
+//    		回调方法
+    		InqueryMethod();
+    		bas.setClientAccont(10000111);
+        	bas.setClientName("李华");
+        	bas.setClientBank(0);
+        	System.out.println("账号：" + bas.getClientAccont());
+        	System.out.println("姓名：" + bas.getClientName());
+        	System.out.println("余额：" + bas.getClientBank());
+        	break;
+    	case "2":
+    		DepositeMethod();
+    		bas.setClientBank(0);
+    		System.out.println("原余额：" + bas.getClientBank());
+    		System.out.print("现存入：");
+    		//long getInputDeposite = 0;
+    		Scanner inputDeposite = new Scanner(System.in);
+    		long getInputDeposite =  inputDeposite.nextInt();
+    		long nowDeposite = 0;
+    		if(nowDeposite == 0){
+    			nowDeposite = getInputDeposite;
+    		}
+    		System.out.println("现余额：" + nowDeposite);
+    		break;
+    	case "3":
+    		WithdrawMethod();
+    		bas.setClientBank(10000);
+    		System.out.println("原余额：" + bas.getClientBank());
+    		System.out.print("现支出：");
+    		Scanner inputNowWithdraw = new Scanner(System.in);
+    		int getNowWithdraw = inputNowWithdraw.nextInt();
+    		if(getNowWithdraw < bas.getClientBank()){
+    		System.out.println("现余额：" + (bas.getClientBank() - getNowWithdraw));
+    		}
+    		if(getNowWithdraw > bas.getClientBank()){
+    			System.out.println("您的余额不足，请检查后再进行取款操作");
+    		}
+            break;
+     }
+   }
+}
